@@ -1,0 +1,33 @@
+Student Name, assignment 1, assignment 2, assignment 3, assignment 4 
+
+John Adams, 90, 91, 99, 98
+
+Paul Newman, 90, 92, 93, 94
+
+Mary Smith, 95, 96, 99
+
+require 'csv'
+
+csv.parse(assignment1, assignment2, assignment3, assignment4)
+
+CSV::Converters[:symbol] = ->(value) { value.to_sym rescue value }
+
+Student Name  = [
+  [:Assignment, 1],
+  [:Assignment, 2],
+  [:Assignment, 3]
+  [:Assignment, 4]
+]
+
+CSV.open("cats.csv", "w") do |csv|
+  csv << [:white, 2]
+end
+
+require 'smarter_csv'
+IntegerConverter = Object.new
+def IntegerConverter.convert(value)
+  Integer(value)
+end
+SmarterCSV.process('testing.csv', value_converters: { id: IntegerConverter })
+# [{:id=>1, :name=>"a"}, {:id=>2, :name=>"b"}, {:id=>3, :name=>"c"}]
+
